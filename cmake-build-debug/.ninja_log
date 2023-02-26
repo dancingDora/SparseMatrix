@@ -1,0 +1,10 @@
+# ninja log v5
+0	10864	1677406518366496291	CMakeFiles/lab0_SparseMatrix.dir/main.cpp.o	8d1d8a4a646097e2
+2	1807	1677407035893646641	CMakeFiles/lab0_SparseMatrix.dir/SparseMatrix.cpp.o	526753db907aa077
+1	907	1677416997550152670	CMakeFiles/lab0_SparseMatrix.dir/test.cpp.o	1de7018d15c218d
+908	1058	1677416997708632750	lab0_SparseMatrix	ed532f34343ac55e
+0	918	1677417688732592239	CMakeFiles/lab0_SparseMatrix.dir/SparseMatrix.cpp.o	526753db907aa077
+0	956	1677417688771794048	CMakeFiles/lab0_SparseMatrix.dir/main.cpp.o	8d1d8a4a646097e2
+956	1106	1677417688928176448	lab0_SparseMatrix	88fc34deee936ddb
+2	861	1677417753954069949	CMakeFiles/lab0_SparseMatrix.dir/SparseMatrix.cpp.o	526753db907aa077
+861	935	1677417754033168029	lab0_SparseMatrix	88fc34deee936ddb

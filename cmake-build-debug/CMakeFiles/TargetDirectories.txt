@@ -1,0 +1,3 @@
+/Users/luyifan/CLionProjects/lab0-SparseMatrix/cmake-build-debug/CMakeFiles/lab0_SparseMatrix.dir
+/Users/luyifan/CLionProjects/lab0-SparseMatrix/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/luyifan/CLionProjects/lab0-SparseMatrix/cmake-build-debug/CMakeFiles/rebuild_cache.dir
