@@ -42,7 +42,7 @@ SparseMatrix SparseMatrix::operator*(const SparseMatrix &B) {
     /* TODO: Your code here. */
 //    return *this;
     SparseMatrix *C;
-    int p,j,q,i,r,k,t;
+    int firstNZ,k;//firstNZ : 每行首个非0元素
     int temp[B.nu + 1];
     int num[B.mu + 1], rpot[B.mu + 1];
     C = (SparseMatrix*)malloc(sizeof(SparseMatrix));
@@ -51,39 +51,40 @@ SparseMatrix SparseMatrix::operator*(const SparseMatrix &B) {
     if(nu != B.mu)
         cerr << "[Invalid] multiply failed.\n";
     //calculate matrix B not zero enum number.
-    for(i = 1; i <= B.mu; i++) num[i] = 0;
-    for(i = 0; i < B.tu; i++) num[B.data[i].i]++;
+    for(int i = 1; i <= B.mu; i++) num[i] = 0; //初始化每行非零元素个数集num
+    for(int i = 0; i < B.tu; i++) num[B.data[i].i]++; //计算B矩阵每行非零元素个数
     rpot[1] = 0;
     //calculate matrix B first not zero enum position.
-    for(i = 2; i <= B.mu; i++) rpot[i] = rpot[i - 1] + num[i - 1];
-    r = 0; // Matrix C number of not zero enum
-    p = 0; // current first not zero enum position of Matrix A
+    for(int i = 2; i <= B.mu; i++) rpot[i] = rpot[i - 1] + num[i - 1]; //计算B矩阵每行首个非零元素位置
+    int numNZ = 0; // Matrix *this number of not zero enum
+    firstNZ = 0; // current first not zero enum position of Matrix A
+    int tmp;
     //execute multiply
-    for(i = 1; i <= mu; i++) {
+    for(int i = 1; i <= mu; i++) {
         //init
-        for(j = 1; j <= B.nu; j++) temp[j] = 0;
+        for(int j = 1; j <= B.nu; j++) temp[j] = 0;
         //Cij i : enum set
-        while(i == data[p].i) {
-            k = data[p].j;//A : P th not zero enum col
-            if(k < B.mu) t = rpot[k + 1];
-            else t = B.tu;
-            for(q = rpot[k]; q < t; q++) {
-                j = B.data[q].j;
-                temp[j] += data[p].v * B.data[q].v;
+        while(i == data[firstNZ].i) {
+            k = data[firstNZ].j;//A : firstNZth not zero enum col
+            if(k < B.mu) tmp = rpot[k + 1];
+            else tmp = B.tu;
+            for(int q = rpot[k]; q < tmp; q++) {
+                int j = B.data[q].j;
+                temp[j] += data[firstNZ].v * B.data[q].v;
             }
-            p++;
+            firstNZ++;
         }
         //result of line i -> Matrix C
-        for(j = 1; j <= B.nu; j++) {
+        for(int j = 1; j <= B.nu; j++) {
             if(temp[j] != 0) {
-                C->data[r] = {i,j,temp[j]};
-                r++;
+                C->data[numNZ] = {i,j,temp[j]};
+                numNZ++;
             }
         }
     }
     C->mu = mu;
     C->nu = B.nu;
-    C->tu = r;
+    C->tu = numNZ;
     return *C;
 
 
