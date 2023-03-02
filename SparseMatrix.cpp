@@ -55,7 +55,7 @@ SparseMatrix SparseMatrix::operator*(const SparseMatrix &B) {
     for(int i = 0; i < B.tu; i++) num[B.data[i].i]++; //计算B矩阵每行非零元素个数
     rpot[1] = 0;
     //calculate matrix B first not zero enum position.
-    for(int i = 2; i <= B.mu; i++) rpot[i] = rpot[i - 1] + num[i - 1]; //计算B矩阵每行首个非零元素位置
+    for(int i = 2; i <= B.mu; i++) rpot[i] = rpot[i - 1] + num[i - 1]; //计算B矩阵每行非零元素个数累加即第一个非零元素在data中位置
     int numNZ = 0; // Matrix *this number of not zero enum
     firstNZ = 0; // current first not zero enum position of Matrix A
     int tmp;
